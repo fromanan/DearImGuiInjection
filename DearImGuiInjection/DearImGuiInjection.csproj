@@ -26,6 +26,7 @@
         <AssemblyOriginatorKeyFile>DearImGuiInjection.snk</AssemblyOriginatorKeyFile>
         <PublicSign>true</PublicSign>
         <IncludeProjectReferencesDuringPacking>false</IncludeProjectReferencesDuringPacking>
+        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(SolutionDir)/VERSION"))</PackageReleaseNotes>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">

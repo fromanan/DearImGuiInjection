@@ -1,0 +1,9 @@
+1.0.0 (2025.09.12)
+
+- Initial Upload
+
+1.0.0.1 (2025.09.12)
+
+- Fixed build system to support multiple outputs
+- Added additional metadata
+- Fixed dependency on internal package not available on Nuget 
