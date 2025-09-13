@@ -32,6 +32,7 @@ if (string.IsNullOrWhiteSpace(solutionDirectory?.FullName))
 }
 
 CreateRelease(solutionDirectory, "netstandard2.0");
+CreateRelease(solutionDirectory, "net35");
 CreateRelease(solutionDirectory, "net462");
 CreateRelease(solutionDirectory, "net6");
 

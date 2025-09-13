@@ -63,7 +63,11 @@ public static class RendererFinder
             return null;
         }
 
+        #if !NET35
         return new DX11Renderer();
+        #else
+        return null;
+        #endif
     }
 
     [MethodImpl(MethodImplOptions.NoInlining)]
@@ -87,7 +91,11 @@ public static class RendererFinder
             return null;
         }
 
+        #if !NET35
         return new DX12Renderer();
+        #else
+        return null;
+        #endif
     }
 
     private static IRenderer GetImplementationFromRendererKind(RendererKind rendererKind) =>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !NET35
+
+using System;
 using System.Collections.Generic;
 using CppInterop;
 using Reloaded.Hooks;
@@ -186,3 +188,5 @@ public class DX11Renderer : IRenderer
         return result;
     }
 }
+
+#endif

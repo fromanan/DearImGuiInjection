@@ -8,8 +8,8 @@
 		<DebugSymbols>false</DebugSymbols>
 		<DebugType>none</DebugType>
 		<Optimize>true</Optimize>
-		<Configurations>netstandard2.0;net462;net6</Configurations>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<Configurations>netstandard2.0;net35;net462;net6</Configurations>
+		<TargetFrameworks>net35;netstandard2.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='netstandard2.0'">
@@ -17,6 +17,12 @@
 		<OutputPath>../bin/</OutputPath>
 		<DefineConstants>NETSTANDARD2_0</DefineConstants>
 	</PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='net35'">
+        <TargetFramework>net35</TargetFramework>
+        <OutputPath>../bin/</OutputPath>
+        <DefineConstants>NET35</DefineConstants>
+    </PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='net462'">
 		<TargetFramework>net462</TargetFramework>
@@ -34,7 +40,7 @@
 		<ProjectReference Include="../DearImGuiInjection/DearImGuiInjection.csproj" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(Configuration)'=='netstandard2.0' or '$(Configuration)'=='net462'">
+	<ItemGroup Condition="'$(Configuration)'=='netstandard2.0' or '$(Configuration)'=='net35' or '$(Configuration)'=='net462'">
 		<PackageReference Include="BepInEx.Core" Version="5.4.21" />
 
 		<Reference Include="UnityEngine">
@@ -92,6 +98,12 @@
 	<ItemGroup Condition="'$(Configuration)'=='netstandard2.0' or '$(Configuration)'=='net6'">
 		<Reference Include="ImGui.NET">
 			<HintPath>../libs/netstandard2.0/ImGui.NET.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='net35'">
+		<Reference Include="ImGui.NET">
+			<HintPath>../libs/net35/ImGui.NET.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

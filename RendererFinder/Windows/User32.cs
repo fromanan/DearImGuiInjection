@@ -49,11 +49,13 @@ internal static class User32
         const string defaultWindowClass = "DearImGuiInjectionWindowClass";
 
         // Register window class
-        var windowClass = new WNDCLASSEXW();
-        windowClass.cbSize = Marshal.SizeOf<WNDCLASSEXW>();
-        windowClass.lpfnWndProc = Marshal.GetFunctionPointerForDelegate(s_WndProc);
-        windowClass.hInstance = GetModuleHandle(null);
-        windowClass.lpszClassName = defaultWindowClass;
+        var windowClass = new WNDCLASSEXW
+        {
+            cbSize = Marshal.SizeOf(typeof(WNDCLASSEXW)),
+            lpfnWndProc = Marshal.GetFunctionPointerForDelegate(s_WndProc),
+            hInstance = GetModuleHandle(null),
+            lpszClassName = defaultWindowClass
+        };
 
         var registeredClass = RegisterClassExW(ref windowClass);
         if (registeredClass == 0)
