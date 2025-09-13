@@ -15,30 +15,25 @@
         <DebugType>none</DebugType>
         <Optimize>true</Optimize>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <Configurations>netstandard2.0;net462;net6</Configurations>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <Configurations>Debug;Release</Configurations>
+        <TargetFrameworks>netstandard2.0;net462;net6</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>DearImGuiInjection Team</Authors>
         <Copyright>Copyright © 2025 DearImGuiInjection Team</Copyright>
         <PackageProjectUrl>https://github.com/fromanan/DearImGuiInjection</PackageProjectUrl>
         <RepositoryType>git</RepositoryType>
+        <IncludeProjectReferencesDuringPacking>false</IncludeProjectReferencesDuringPacking>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)'=='netstandard2.0'">
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <OutputPath>../bin/</OutputPath>
+    <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
         <DefineConstants>NETSTANDARD2_0</DefineConstants>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)'=='net462'">
-        <TargetFramework>net462</TargetFramework>
-        <OutputPath>../bin/</OutputPath>
+    <PropertyGroup Condition="'$(TargetFramework)'=='net462'">
         <DefineConstants>NET462</DefineConstants>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)'=='net6'">
-        <TargetFramework>net6</TargetFramework>
-        <OutputPath>../bin/</OutputPath>
+    <PropertyGroup Condition="'$(TargetFramework)'=='net6'">
         <DefineConstants>NET6</DefineConstants>
     </PropertyGroup>
 
@@ -58,10 +53,36 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="../RendererFinder/RendererFinder.csproj"/>
+        <!-- Don't list as nuget dependency -->
+        <ProjectReference Include="../RendererFinder/RendererFinder.csproj" PrivateAssets="all"/>
+        <!--<ProjectReference Include="../RendererFinder/RendererFinder.csproj">
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+            <IncludeAssets>RendererFinder.dll</IncludeAssets>
+        </ProjectReference>
+        <ProjectReference Include="../NativeMemory/NativeMemory.csproj">
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+            <IncludeAssets>NativeMemory.dll</IncludeAssets>
+        </ProjectReference>
+        <ProjectReference Include="../CppInterop/CppInterop.csproj">
+            <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+            <IncludeAssets>CppInterop.dll</IncludeAssets>
+        </ProjectReference>-->
     </ItemGroup>
 
-    <ItemGroup Condition="'$(Configuration)'=='netstandard2.0' or '$(Configuration)'=='net462'">
+    <!-- Copy without dependency -->
+    <Target Name="AddPackFiles" AfterTargets="Build">
+        <ItemGroup>
+            <None Include="..\RendererFinder\bin\$(Configuration)\$(TargetFramework)\RendererFinder.dll" Pack="true" PackagePath="lib\$(TargetFramework)\"/>
+        </ItemGroup>
+    </Target>
+
+    <!--<Target Name="AfterBuild">
+        <ILRepack OutputType="library"
+                  OutputFile="$(TargetDir)$(AssemblyName).dll"
+                  InputAssemblies="$(TargetPath);$(TargetDir)RendererFinder.dll"/>
+    </Target>-->
+
+    <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0' or '$(TargetFramework)'=='net462'">
         <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
 
         <Reference Include="UnityEngine">
@@ -74,71 +95,87 @@
         </Reference>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(Configuration)'=='net6'">
+    <ItemGroup Condition="'$(TargetFramework)'=='net6'">
         <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be*" PrivateAssets="all"/>
 
         <Reference Include="Il2Cppmscorlib">
-            <HintPath>..\libs\net6\Il2Cppmscorlib.dll</HintPath>
+            <HintPath>..\libs\$(TargetFramework)\Il2Cppmscorlib.dll</HintPath>
             <Private>False</Private>
         </Reference>
 
         <Reference Include="UnityEngine">
-            <HintPath>..\libs\net6\UnityEngine.dll</HintPath>
+            <HintPath>..\libs\$(TargetFramework)\UnityEngine.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine.AudioModule">
-            <HintPath>..\libs\net6\UnityEngine.AudioModule.dll</HintPath>
+            <HintPath>..\libs\$(TargetFramework)\UnityEngine.AudioModule.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-            <HintPath>..\libs\net6\UnityEngine.CoreModule.dll</HintPath>
+            <HintPath>..\libs\$(TargetFramework)\UnityEngine.CoreModule.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule">
-            <HintPath>..\libs\net6\UnityEngine.PhysicsModule.dll</HintPath>
+            <HintPath>..\libs\$(TargetFramework)\UnityEngine.PhysicsModule.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine.TextRenderingModule">
-            <HintPath>..\libs\net6\UnityEngine.TextRenderingModule.dll</HintPath>
+            <HintPath>..\libs\$(TargetFramework)\UnityEngine.TextRenderingModule.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine.UI">
-            <HintPath>..\libs\net6\UnityEngine.UI.dll</HintPath>
+            <HintPath>..\libs\$(TargetFramework)\UnityEngine.UI.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine.UIModule">
-            <HintPath>..\libs\net6\UnityEngine.UIModule.dll</HintPath>
+            <HintPath>..\libs\$(TargetFramework)\UnityEngine.UIModule.dll</HintPath>
             <Private>False</Private>
         </Reference>
         <Reference Include="UnityEngine.IMGUIModule">
-            <HintPath>..\libs\net6\UnityEngine.IMGUIModule.dll</HintPath>
+            <HintPath>..\libs\$(TargetFramework)\UnityEngine.IMGUIModule.dll</HintPath>
             <Private>False</Private>
         </Reference>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(Configuration)'=='netstandard2.0' or '$(Configuration)'=='net6'">
+    <!--<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0' or '$(TargetFramework)'=='net6'">
         <Reference Include="ImGui.NET">
-            <HintPath>../libs/netstandard2.0/ImGui.NET.dll</HintPath>
+            <HintPath>../libs/$(TargetFramework)/ImGui.NET.dll</HintPath>
         </Reference>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(Configuration)'=='net462'">
+    <ItemGroup Condition="'$(TargetFramework)'=='net462'">
         <Reference Include="ImGui.NET">
-            <HintPath>../libs/net462/ImGui.NET.dll</HintPath>
+            <HintPath>../libs/$(TargetFramework)/ImGui.NET.dll</HintPath>
+        </Reference>
+    </ItemGroup>-->
+
+    <ItemGroup>
+        <Reference Include="ImGui.NET">
+            <HintPath>../libs/$(TargetFramework)/ImGui.NET.dll</HintPath>
         </Reference>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(Configuration)'=='net462'">
+    <ItemGroup Condition="'$(TargetFramework)'=='net462'">
         <PackageReference Include="System.Numerics.Vectors" Version="4.5.0"/>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+    <!--<ItemGroup Condition="'$(TargetFramework)' == 'net462'">
         <Reference Include="Reloaded.Hooks">
-            <HintPath>..\..\Reloaded.Hooks\source\Reloaded.Hooks\bin\Release\net462\Reloaded.Hooks.dll</HintPath>
+            <HintPath>..\..\Reloaded.Hooks\source\Reloaded.Hooks\bin\$(Configuration)\$(TargetFramework)\Reloaded.Hooks.dll</HintPath>
         </Reference>
         <Reference Include="Reloaded.Hooks.Definitions">
-            <HintPath>..\..\Reloaded.Hooks\source\Reloaded.Hooks.Definitions\bin\Release\net462\Reloaded.Hooks.Definitions.dll</HintPath>
+            <HintPath>..\..\Reloaded.Hooks\source\Reloaded.Hooks.Definitions\bin\$(Configuration)\$(TargetFramework)\Reloaded.Hooks.Definitions.dll</HintPath>
         </Reference>
+    </ItemGroup>-->
+
+    <ItemGroup>
+        <PackageReference Include="Reloaded.Hooks" Version="4.3.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\VERSION">
+            <Link>VERSION</Link>
+        </Content>
     </ItemGroup>
 
 </Project>
