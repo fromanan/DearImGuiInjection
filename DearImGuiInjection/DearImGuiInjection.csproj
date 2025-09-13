@@ -1,150 +1,144 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>Library</OutputType>
-		<PlatformTarget>AnyCPU</PlatformTarget>
-		<LangVersion>preview</LangVersion>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<!-- <DebugSymbols>true</DebugSymbols> -->
-		<!-- <DebugType>embedded</DebugType> -->
-		<!-- <Optimize>false</Optimize> -->
-		<!-- <DebugSymbols>false</DebugSymbols> -->
-		<!-- <DebugType>none</DebugType> -->
-		<!-- <Optimize>true</Optimize> -->
-		<DebugSymbols>false</DebugSymbols>
-		<DebugType>none</DebugType>
-		<Optimize>true</Optimize>
-		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-		<Configurations>netstandard2.0;net462;net6</Configurations>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Authors>DearImGuiInjection Team</Authors>
-		<Copyright>Copyright © 2025 DearImGuiInjection Team</Copyright>
-		<PackageProjectUrl>https://github.com/fromanan/DearImGuiInjection</PackageProjectUrl>
-		<RepositoryType>git</RepositoryType>
-	</PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <LangVersion>preview</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <!-- <DebugSymbols>true</DebugSymbols> -->
+        <!-- <DebugType>embedded</DebugType> -->
+        <!-- <Optimize>false</Optimize> -->
+        <!-- <DebugSymbols>false</DebugSymbols> -->
+        <!-- <DebugType>none</DebugType> -->
+        <!-- <Optimize>true</Optimize> -->
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <Configurations>netstandard2.0;net462;net6</Configurations>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>DearImGuiInjection Team</Authors>
+        <Copyright>Copyright © 2025 DearImGuiInjection Team</Copyright>
+        <PackageProjectUrl>https://github.com/fromanan/DearImGuiInjection</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='netstandard2.0'">
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<OutputPath>../bin/</OutputPath>
-		<DefineConstants>NETSTANDARD2_0</DefineConstants>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='netstandard2.0'">
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <OutputPath>../bin/</OutputPath>
+        <DefineConstants>NETSTANDARD2_0</DefineConstants>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='net462'">
-		<TargetFramework>net462</TargetFramework>
-		<OutputPath>../bin/</OutputPath>
-		<DefineConstants>NET462</DefineConstants>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='net462'">
+        <TargetFramework>net462</TargetFramework>
+        <OutputPath>../bin/</OutputPath>
+        <DefineConstants>NET462</DefineConstants>
+    </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='net6'">
-		<TargetFramework>net6</TargetFramework>
-		<OutputPath>../bin/</OutputPath>
-		<DefineConstants>NET6</DefineConstants>
-	</PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)'=='net6'">
+        <TargetFramework>net6</TargetFramework>
+        <OutputPath>../bin/</OutputPath>
+        <DefineConstants>NET6</DefineConstants>
+    </PropertyGroup>
 
-	<PropertyGroup>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<RepositoryUrl>https://github.com/fromanan/DearImGuiInjection</RepositoryUrl>
-	</PropertyGroup>
-	
-	<ItemGroup>
-		<None Include="..\README.md" Pack="true" PackagePath="\"/>
-		<None Include="..\LICENSE" Pack="true" PackagePath=""/>
-	</ItemGroup>
+    <PropertyGroup>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <RepositoryUrl>https://github.com/fromanan/DearImGuiInjection</RepositoryUrl>
+    </PropertyGroup>
 
-	<ItemGroup>
-	  <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
-	</ItemGroup>
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\"/>
+        <None Include="..\LICENSE" Pack="true" PackagePath=""/>
+    </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="../RendererFinder/RendererFinder.csproj" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0"/>
+    </ItemGroup>
 
-	<ItemGroup Condition="'$(Configuration)'=='netstandard2.0' or '$(Configuration)'=='net462'">
-		<PackageReference Include="BepInEx.Core" Version="5.4.21" />
+    <ItemGroup>
+        <ProjectReference Include="../RendererFinder/RendererFinder.csproj"/>
+    </ItemGroup>
 
-		<Reference Include="UnityEngine">
-			<HintPath>..\libs\net35\UnityEngine.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine.UI">
-			<HintPath>..\libs\net35\UnityEngine.UI.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-	</ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='netstandard2.0' or '$(Configuration)'=='net462'">
+        <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
 
-	<ItemGroup Condition="'$(Configuration)'=='net6'">
-		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be*" PrivateAssets="all" />
+        <Reference Include="UnityEngine">
+            <HintPath>..\libs\net35\UnityEngine.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>..\libs\net35\UnityEngine.UI.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
 
-		<Reference Include="Il2Cppmscorlib">
-			<HintPath>..\libs\net6\Il2Cppmscorlib.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		
-		<Reference Include="UnityEngine">
-			<HintPath>..\libs\net6\UnityEngine.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine.AudioModule">
-			<HintPath>..\libs\net6\UnityEngine.AudioModule.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine.CoreModule">
-			<HintPath>..\libs\net6\UnityEngine.CoreModule.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine.PhysicsModule">
-			<HintPath>..\libs\net6\UnityEngine.PhysicsModule.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine.TextRenderingModule">
-			<HintPath>..\libs\net6\UnityEngine.TextRenderingModule.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine.UI">
-			<HintPath>..\libs\net6\UnityEngine.UI.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine.UIModule">
-			<HintPath>..\libs\net6\UnityEngine.UIModule.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine.IMGUIModule">
-			<HintPath>..\libs\net6\UnityEngine.IMGUIModule.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-	</ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='net6'">
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be*" PrivateAssets="all"/>
 
-	<ItemGroup Condition="'$(Configuration)'=='netstandard2.0' or '$(Configuration)'=='net6'">
-		<Reference Include="ImGui.NET">
-			<HintPath>../libs/netstandard2.0/ImGui.NET.dll</HintPath>
-		</Reference>
-	</ItemGroup>
+        <Reference Include="Il2Cppmscorlib">
+            <HintPath>..\libs\net6\Il2Cppmscorlib.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
 
-	<ItemGroup Condition="'$(Configuration)'=='net462'">
-		<Reference Include="ImGui.NET">
-			<HintPath>../libs/net462/ImGui.NET.dll</HintPath>
-		</Reference>
-	</ItemGroup>
+        <Reference Include="UnityEngine">
+            <HintPath>..\libs\net6\UnityEngine.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule">
+            <HintPath>..\libs\net6\UnityEngine.AudioModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>..\libs\net6\UnityEngine.CoreModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+            <HintPath>..\libs\net6\UnityEngine.PhysicsModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath>..\libs\net6\UnityEngine.TextRenderingModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>..\libs\net6\UnityEngine.UI.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule">
+            <HintPath>..\libs\net6\UnityEngine.UIModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+            <HintPath>..\libs\net6\UnityEngine.IMGUIModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
 
-	<ItemGroup Condition="'$(Configuration)'=='net462'">
-		<PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-	</ItemGroup>
+    <ItemGroup Condition="'$(Configuration)'=='netstandard2.0' or '$(Configuration)'=='net6'">
+        <Reference Include="ImGui.NET">
+            <HintPath>../libs/netstandard2.0/ImGui.NET.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 
+    <ItemGroup Condition="'$(Configuration)'=='net462'">
+        <Reference Include="ImGui.NET">
+            <HintPath>../libs/net462/ImGui.NET.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 
+    <ItemGroup Condition="'$(Configuration)'=='net462'">
+        <PackageReference Include="System.Numerics.Vectors" Version="4.5.0"/>
+    </ItemGroup>
 
-
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-		<Reference Include="Reloaded.Hooks">
-			<HintPath>..\..\Reloaded.Hooks\source\Reloaded.Hooks\bin\Release\net462\Reloaded.Hooks.dll</HintPath>
-		</Reference>
-		<Reference Include="Reloaded.Hooks.Definitions">
-			<HintPath>..\..\Reloaded.Hooks\source\Reloaded.Hooks.Definitions\bin\Release\net462\Reloaded.Hooks.Definitions.dll</HintPath>
-		</Reference>
-	</ItemGroup>
-
-
+    <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+        <Reference Include="Reloaded.Hooks">
+            <HintPath>..\..\Reloaded.Hooks\source\Reloaded.Hooks\bin\Release\net462\Reloaded.Hooks.dll</HintPath>
+        </Reference>
+        <Reference Include="Reloaded.Hooks.Definitions">
+            <HintPath>..\..\Reloaded.Hooks\source\Reloaded.Hooks.Definitions\bin\Release\net462\Reloaded.Hooks.Definitions.dll</HintPath>
+        </Reference>
+    </ItemGroup>
 
 </Project>

@@ -49,7 +49,7 @@
 		<PackageReference Include="netstandard2.0.SharpDX" Version="4.2.1-beta0-g7abb72df54" />
 		<PackageReference Include="netstandard2.0.SharpDX.DXGI" Version="4.2.1-beta0-g7abb72df54" />
 		<PackageReference Include="netstandard2.0.SharpDX.Direct3D11" Version="4.2.1-beta0-g7abb72df54" />
-		<PackageReference Include="netstandard2.0.SharpDX.Direct3D12" Version="4.2.1-beta0-g7abb72df54" />
+		<PackageReference Include="netstandard2.0.SharpDX.Direct3D12" Version="4.2.1-beta0-g7abb72df54"/>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(Configuration)'=='net462'">
