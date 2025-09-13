@@ -15,6 +15,7 @@ The keybind for bringing up the cursor for interaction is by default the `Insert
 Download this package and add a reference to `ImGui.NET.dll` and `DearImGuiInjection.dll` in your C# project.
 
 Above your `BaseUnityPlugin` class definition
+
 ```csharp
 [BepInDependency(DearImGuiInjection.Metadata.GUID)]
 ```
@@ -104,4 +105,7 @@ if (ImGui.Button("Click me", Constants.DefaultVector2))
 
 ## Credits
 
-[Sewer56](https://github.com/Sewer56)
+- [Tony Froman](https://github.com/fromanan) - Current Maintainer
+- [Penswer](https://github.com/Penswer) - Previous Maintainer
+- [Quentin](https://github.com/xiaoxiao921) - Repository Creator
+- [Sewer56](https://github.com/Sewer56)
