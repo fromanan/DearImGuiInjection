@@ -17,6 +17,11 @@
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<Configurations>netstandard2.0;net462;net6</Configurations>
 		<TargetFramework>netstandard2.0</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>DearImGuiInjection Team</Authors>
+		<Copyright>Copyright © 2025 DearImGuiInjection Team</Copyright>
+		<PackageProjectUrl>https://github.com/fromanan/DearImGuiInjection</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='netstandard2.0'">
@@ -36,6 +41,17 @@
 		<OutputPath>../bin/</OutputPath>
 		<DefineConstants>NET6</DefineConstants>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<RepositoryUrl>https://github.com/fromanan/DearImGuiInjection</RepositoryUrl>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\"/>
+		<None Include="..\LICENSE" Pack="true" PackagePath=""/>
+	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
