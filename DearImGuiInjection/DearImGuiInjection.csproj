@@ -22,6 +22,9 @@
         <Copyright>Copyright © 2025 DearImGuiInjection Team</Copyright>
         <PackageProjectUrl>https://github.com/fromanan/DearImGuiInjection</PackageProjectUrl>
         <RepositoryType>git</RepositoryType>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>DearImGuiInjection.snk</AssemblyOriginatorKeyFile>
+        <PublicSign>true</PublicSign>
         <IncludeProjectReferencesDuringPacking>false</IncludeProjectReferencesDuringPacking>
     </PropertyGroup>
 
